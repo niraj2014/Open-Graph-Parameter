@@ -1,0 +1,54 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<script src="https://code.jquery.com/jquery-3.3.0.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+<link href="../stylesheets/scrap.css" rel="stylesheet" />
+</head>
+<body>
+
+<h2>Card</h2>
+
+<div class="card">
+  <h4 id='info'>Open Graph Object Debugger</h4>
+  <div class="container">
+        <h4>Input URL</h4>
+	<select id="example" multiple="multiple" style="width: 300px">
+    <option value="URL1">http://www.amazon.com/Apple-iPhone-16gb-Space-Unlocked/dp/B00NQGP42Y/</option>
+    
+</select><br><br>
+   <button>Show existing scrape information</button>
+   <button>Fetch new scrape information</button>
+   <br><br>
+  </div>
+</div>
+
+
+<script>
+$('#example').select2({
+    placeholder: 'Insert URL:',
+    tags: true,
+    tokenSeparators: [","]
+    
+});
+
+$('#example').on("change", function(e) {
+    var data = $("#example option:selected").text();
+    var theSelection = data;
+    console.log(theSelection);
+    $.post("/scrapurl", data, (data) => {
+	console.log(data);
+
+});
+}); 
+
+
+</script>
+
+</body>
+</html>
+
+

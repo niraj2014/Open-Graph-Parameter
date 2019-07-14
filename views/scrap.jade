@@ -1,0 +1,37 @@
+extends layout
+block content
+     .card
+       h4#info Open Graph Object Debugger
+       .container
+         h4 Input URL
+         select#example(multiple='multiple', style='width: 300px')
+           option(value='URL1') https://www.imdb.com/title/tt0117500/
+         br
+         br
+         button#showbtn Show existing scrape information
+         button#fetchbtn Fetch new scrape information
+         br
+         br
+         div #{OGP}
+      #output.card
+      h4#info Scrap Data
+      .container
+        #scrapInfo
+     script.
+       $('#example').select2({
+       placeholder: 'Insert URL:',
+       tags: true,
+       tokenSeparators: [","]
+       });
+       $('#example').on("change", function(e) {
+       $('#output').show();
+       document.getElementById("scrapInfo").innerHTML = "Please wait...";
+       var data = $("#example option:selected").text();
+       var theSelection = data;
+       console.log(theSelection);
+       $.post("/ogparams/scrapurl", data, (data) => {
+       console.log("niraj: ",data);
+       $('#output').show();
+       document.getElementById("scrapInfo").innerHTML = JSON.stringify(data);
+       });
+       });

@@ -1,0 +1,49 @@
+body {
+  padding: 50px;
+  font-family:arial;
+}
+
+a {
+  color: #00B7FF;
+}
+
+ul.success li, ul.info li, ul.error li{
+    margin: 20px 0 20px 0;
+    padding:15px;
+    border: 1px solid transparent;
+    border-radius:5px;
+    list-style: none;
+}
+
+ul.success li{
+    color:#3c763d;
+    background:#dff0d8;
+    border-color:#d6e9c6;
+}
+
+ul.error li{
+    color:#31708f;
+    background:#FF8080;
+    border-color:#bce8f1;
+}
+
+/*.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    margin-left: 37px !important;
+}*/
+
+.nav > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-right: 301px;
+}
+
+footer > p {
+	margin: 400px 0 12px 380px;
+
+}
