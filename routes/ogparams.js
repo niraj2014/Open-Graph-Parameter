@@ -4,8 +4,29 @@ var path = require('path');
 var app = express();
 var request = require('request');
 var cheerio = require('cheerio');
+var cache = require('memory-cache');
+// configure cache middleware
+let memCache = new cache.Cache();
+let cacheMiddleware = (duration) => {
+      return (req, res, next) => {
+          let key =  '__express__' + req.originalUrl || req.url
+          let cacheContent = memCache.get(key);
+          if(cacheContent){
+                res.send( cacheContent );
+                return
+            }else{
+                res.sendResponse = res.send
+                res.send = (body) => {
+                    memCache.put(key,body,duration*1000);
+                    res.sendResponse(body)
+                }
+                next()
+            }
+      }
+}
 
-router.post('/scrapurl', function(req, res, next) {
+
+router.post('/scrapurl', cacheMiddleware(30), function(req, res, next) {
  var url = Object.keys(req.body)[0];
  console.log("url", Object.keys(req.body)[0]);
  process.stdout.write('Please wait..');
