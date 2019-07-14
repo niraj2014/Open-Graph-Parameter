@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var path = require('path');
-var app = express();
-var request = require('request');
-var cheerio = require('cheerio');
-var cache = require('memory-cache');
+let express = require('express');
+let router = express.Router();
+let path = require('path');
+let app = express();
+let request = require('request');
+let cheerio = require('cheerio');
+let cache = require('memory-cache');
 // configure cache middleware
 let memCache = new cache.Cache();
 let cacheMiddleware = (duration) => {
@@ -25,9 +25,8 @@ let cacheMiddleware = (duration) => {
       }
 }
 
-
-router.post('/scrapurl', cacheMiddleware(30), function(req, res, next) {
- var url = Object.keys(req.body)[0];
+router.post('/scrapurl', cacheMiddleware(30), (req, res, next) => {
+ let url = Object.keys(req.body)[0];
  console.log("url", Object.keys(req.body)[0]);
  process.stdout.write('Please wait..');
 request(url, (err, resp, body)=>{
