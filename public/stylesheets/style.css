@@ -3,6 +3,8 @@ body {
   font-family:arial;
 }
 
+#reg{margin-left: 10px}
+
 a {
   color: #00B7FF;
 }
@@ -36,11 +38,15 @@ ul.error li{
     margin-left: 37px !important;
 }*/
 
-.nav > li > a {
+/*.nav > li > a {
     position: relative;
     display: block;
     padding: 10px 15px;
     margin-right: 301px;
+}*/
+
+#reg {
+    margin-left: 748px;
 }
 
 footer > p {
